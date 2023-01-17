@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "9ec8378e-2619-438b-852d-1cfe49564179",
+		"name": "spring-security-zenn-ariticle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15499051"
+	},
+	"item": [
+		{
+			"name": "public",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/public",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"public"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "private",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1qazxsw2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/private",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"private"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "public with authrization header",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1qazxsw2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/public",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"public"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "port",
+			"value": "9080"
+		}
+	]
+}
