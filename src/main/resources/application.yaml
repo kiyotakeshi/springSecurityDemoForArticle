@@ -1,2 +1,15 @@
 server:
   port: 9080
+spring:
+  security:
+    user:
+      # https://docs.spring.io/spring-boot/docs/3.0.1/reference/htmlsingle/#application-properties.security.spring.security.user.name
+      name: test
+      password: 1qazxsw2
+
+## https://docs.spring.io/spring-boot/docs/3.0.1/reference/htmlsingle/#features.logging.log-levels
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        security: TRACE
