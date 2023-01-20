@@ -50,18 +50,20 @@ class SecurityConfig {
      */
     @Bean
     fun users(dataSource: DataSource): UserDetailsManager {
+        // create sample user
+        /*
         val user: UserDetails = User.builder()
             .username("admin")
             // encode with Spring Boot CLI
             // https://docs.spring.io/spring-security/reference/features/authentication/password-storage.html#authentication-password-storage-boot-cli
             // $ spring encodepassword 1qazxsw2
-            .password("{bcrypt}\$2a\$10\$1gHHMqYmv7spE.896lYtKuenhXSRGyZ0FK.JTzAOSD6qgRKtPl5wy")
+            .password("$2a\$10\$1gHHMqYmv7spE.896lYtKuenhXSRGyZ0FK.JTzAOSD6qgRKtPl5wy")
             .authorities("USER", "ADMIN")
             .build()
         val admin: UserDetails = User.builder()
             .username("user")
             // $ spring encodepassword 2wsxzaq1
-            .password("{bcrypt}\$2a\$10\$saAFPwyIghNePc0C4sKuUOBUIQBs6xnC8sUh2OvLW6fuU57oJ1tp6")
+            .password("$2a\$10\$saAFPwyIghNePc0C4sKuUOBUIQBs6xnC8sUh2OvLW6fuU57oJ1tp6")
             .authorities("USER")
             .build()
 
@@ -69,5 +71,7 @@ class SecurityConfig {
         users.createUser(user)
         users.createUser(admin)
         return users
+         */
+        return JdbcUserDetailsManager(dataSource)
     }
 }
