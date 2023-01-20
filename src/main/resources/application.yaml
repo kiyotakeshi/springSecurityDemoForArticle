@@ -1,11 +1,11 @@
 server:
   port: 9080
 spring:
-  security:
-    user:
-      # https://docs.spring.io/spring-boot/docs/3.0.1/reference/htmlsingle/#application-properties.security.spring.security.user.name
-      name: test
-      password: 1qazxsw2
+  datasource:
+    url: jdbc:postgresql://localhost:15432/testdb
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: password
 
 ## https://docs.spring.io/spring-boot/docs/3.0.1/reference/htmlsingle/#features.logging.log-levels
 #logging:

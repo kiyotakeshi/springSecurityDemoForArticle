@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:13.9
+    container_name: spring-security-demo-postgres
+    ports:
+      - 15432:5432
+    volumes:
+      - ./.docker/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: testdb
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    restart: always
