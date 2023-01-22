@@ -12,16 +12,13 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 class CustomerController(
-    private val customerRepository: CustomerRepository,
-    private val passwordEncoder: PasswordEncoder,
+    private val customerDetails: CustomerDetails
 ) {
     @PostMapping("/register")
     fun registerUser(@RequestBody customer: Customer): ResponseEntity<*>? {
         var response: ResponseEntity<*>? = null
         try {
-            val hashedPassword = passwordEncoder.encode(customer.getPassword())
-            val newCustomer = Customer(customer.getEmail(), hashedPassword, customer.getRole())
-            val savedCustomer = customerRepository.save(newCustomer)
+            val savedCustomer: Customer = customerDetails.register(customer);
             if (savedCustomer.getId() > 0) {
                 response = ResponseEntity
                     .status(HttpStatus.CREATED)
