@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9ec8378e-2619-438b-852d-1cfe49564179",
+		"_postman_id": "67340b5f-9ca3-427a-918e-9d4109b3d2e6",
 		"name": "spring-security-zenn-ariticle",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "15499051"
@@ -28,19 +28,49 @@
 			"response": []
 		},
 		{
-			"name": "private",
+			"name": "register customer(mike)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"mike@example.com\",\n  \"password\": \"2wsxzaq1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:{{port}}/register",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "private with authorization header(admin)",
 			"request": {
 				"auth": {
 					"type": "basic",
 					"basic": [
 						{
-							"key": "password",
-							"value": "1qazxsw2",
+							"key": "username",
+							"value": "admin@example.com",
 							"type": "string"
 						},
 						{
-							"key": "username",
-							"value": "user",
+							"key": "password",
+							"value": "1qazxsw2",
 							"type": "string"
 						}
 					]
@@ -61,7 +91,85 @@
 			"response": []
 		},
 		{
-			"name": "public with authrization header",
+			"name": "private with authorization header(mike)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "mike@example.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "2wsxzaq1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/private",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"private"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add new role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin@example.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "1qazxsw2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"TEST\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:{{port}}/roles",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get roles",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -73,21 +181,119 @@
 						},
 						{
 							"key": "username",
-							"value": "test",
+							"value": "admin@example.com",
 							"type": "string"
 						}
 					]
 				},
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:{{port}}/public",
+					"raw": "localhost:{{port}}/roles",
 					"host": [
 						"localhost"
 					],
 					"port": "{{port}}",
 					"path": [
-						"public"
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get customers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1qazxsw2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@example.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:{{port}}/customers",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "attach role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin@example.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "1qazxsw2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\"TEST\"]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:{{port}}/customers/22/roles",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"customers",
+						"22",
+						"roles"
 					]
 				}
 			},
