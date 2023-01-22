@@ -1,4 +1,4 @@
-package com.example.zenn
+package com.example.zenn.security
 
 import org.springframework.security.crypto.bcrypt.BCrypt
 import org.springframework.security.crypto.password.PasswordEncoder

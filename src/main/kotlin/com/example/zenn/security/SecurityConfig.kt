@@ -1,4 +1,4 @@
-package com.example.zenn
+package com.example.zenn.security
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -23,8 +23,9 @@ class SecurityConfig {
         http
             .authorizeHttpRequests {
                 it.requestMatchers("/register", "/public").permitAll()
-                    // .requestMatchers("/private").hasAnyRole("ADMIN", "USER")
-                    .anyRequest().authenticated()
+                    .requestMatchers("/private").hasAnyRole("ADMIN", "USER")
+                    .requestMatchers("/roles", "/customers/**").hasRole("ADMIN")
+                    // .anyRequest().authenticated()
             }
             .formLogin()
             .and().httpBasic()

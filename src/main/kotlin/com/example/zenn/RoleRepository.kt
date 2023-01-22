@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository
  * @author kiyota
  */
 @Repository
-interface CustomerRepository : CrudRepository<Customer, Int> {
-    fun findByEmail(email: String): List<Customer>
+interface RoleRepository : CrudRepository<Role, Int> {
+    fun findByName(name: String): Role?
+    fun findByNameIn(names: List<String>): Set<Role>?
 }

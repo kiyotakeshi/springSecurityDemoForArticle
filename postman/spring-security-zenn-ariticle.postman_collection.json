@@ -37,7 +37,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"1qazxsw2\",\n  \"role\": \"ADMIN\"\n}",
+					"raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"1qazxsw2\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -67,7 +67,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"email\": \"mike@example.com\",\n  \"password\": \"2wsxzaq1\",\n  \"role\": \"USER\"\n}",
+					"raw": "{\n  \"email\": \"mike@example.com\",\n  \"password\": \"2wsxzaq1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,19 +88,19 @@
 			"response": []
 		},
 		{
-			"name": "private",
+			"name": "private with authrization header(admin)",
 			"request": {
 				"auth": {
 					"type": "basic",
 					"basic": [
 						{
-							"key": "password",
-							"value": "1qazxsw2",
+							"key": "username",
+							"value": "admin@example.com",
 							"type": "string"
 						},
 						{
-							"key": "username",
-							"value": "user",
+							"key": "password",
+							"value": "1qazxsw2",
 							"type": "string"
 						}
 					]
@@ -121,14 +121,14 @@
 			"response": []
 		},
 		{
-			"name": "private with authrization header(admin)",
+			"name": "add new role",
 			"request": {
 				"auth": {
 					"type": "basic",
 					"basic": [
 						{
 							"key": "username",
-							"value": "admin",
+							"value": "admin@example.com",
 							"type": "string"
 						},
 						{
@@ -138,16 +138,159 @@
 						}
 					]
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"VIEWER\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:{{port}}/private",
+					"raw": "localhost:{{port}}/roles",
 					"host": [
 						"localhost"
 					],
 					"port": "{{port}}",
 					"path": [
-						"private"
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "attch role",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin@example.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "1qazxsw2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\"EDITER\", \"VIEWER\"]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:{{port}}/customers/22/roles",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"customers",
+						"22",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get roles",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1qazxsw2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@example.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:{{port}}/roles",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get customers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1qazxsw2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@example.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:{{port}}/customers",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"customers"
 					]
 				}
 			},
