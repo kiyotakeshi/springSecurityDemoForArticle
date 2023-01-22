@@ -1,9 +1,9 @@
 package com.example.zenn.security
 
-import com.example.zenn.Customer
-import com.example.zenn.CustomerRepository
-import com.example.zenn.Role
-import com.example.zenn.RoleRepository
+import com.example.zenn.domain.customer.Customer
+import com.example.zenn.domain.customer.CustomerRepository
+import com.example.zenn.domain.role.Role
+import com.example.zenn.domain.role.RoleRepository
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.User
@@ -23,25 +23,21 @@ class CustomerDetails(
     private val passwordEncoder: PasswordEncoder,
 ) : UserDetailsService {
 
-    @Throws(UsernameNotFoundException::class)
     override fun loadUserByUsername(email: String): UserDetails {
-        val customers = customerRepository.findByEmail(email)
-        return if (customers.isEmpty()) {
-            throw UsernameNotFoundException("User details not found for the user : $email")
-        } else {
-            val customer = customers[0]
-            val authorities: MutableList<GrantedAuthority> = ArrayList()
-            customer.getRoles().map {
-                authorities.add(SimpleGrantedAuthority("ROLE_${it?.getName()}"))
-            }
-            User(customer.getEmail(), customer.getPassword(), authorities)
+        val customer = customerRepository.findByEmail(email)
+            ?: throw UsernameNotFoundException("User details not found for the user : $email")
+
+        val authorities: MutableList<GrantedAuthority> = ArrayList()
+        customer.roles?.map {
+            authorities.add(SimpleGrantedAuthority("ROLE_${it.name}"))
         }
+        return User(customer.email, customer.password, authorities)
     }
 
     fun register(customer: Customer): Customer {
-        val hashedPassword = passwordEncoder.encode(customer.getPassword())
+        val hashedPassword = passwordEncoder.encode(customer.password)
         val userRole: Role? = roleRepository.findByName("USER")
-        val newCustomer = Customer(customer.getEmail(), hashedPassword, setOf(userRole))
+        val newCustomer = Customer.create(customer.email, hashedPassword, setOfNotNull(userRole))
         return customerRepository.save(newCustomer)
     }
 }

@@ -1,6 +1,9 @@
 package com.example.zenn
 
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException
+import com.example.zenn.domain.customer.Customer
+import com.example.zenn.domain.customer.CustomerRepository
+import com.example.zenn.domain.role.Role
+import com.example.zenn.domain.role.RoleRepository
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
@@ -9,6 +12,7 @@ import java.util.*
  */
 @RestController
 class AdminController(
+    // TODO: usecase layer をもうけてエラーハンドリング
     private val customerRepository: CustomerRepository,
     private val roleRepository: RoleRepository,
 ) {
@@ -17,12 +21,13 @@ class AdminController(
     fun addRole(@RequestBody role: Role): Role = roleRepository.save(role)
 
     @GetMapping("/roles")
-    fun getRoles(): List<Role> = roleRepository.findAll().toList()
+    fun getRoles(): List<Role> = roleRepository.findAll()
 
     @GetMapping("/customers")
-    fun getCustomers(): List<Customer> = customerRepository.findAll().toList()
+    fun getCustomers(): List<Customer> = customerRepository.findAll()
 
     @PutMapping("/customers/{customerId}/roles")
-    fun attachRoles(@PathVariable customerId: Int, @RequestBody roles: List<String>) {
+    fun attachRoles(@PathVariable customerId: Int, @RequestBody roles: List<String>): Customer {
+        return customerRepository.attachRoles(customerId, roles)
     }
 }

@@ -142,7 +142,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"VIEWER\"\n}",
+					"raw": "{\n    \"name\": \"TEST\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
