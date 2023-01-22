@@ -28,6 +28,66 @@
 			"response": []
 		},
 		{
+			"name": "register customer(admin)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"1qazxsw2\",\n  \"role\": \"ADMIN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:{{port}}/register",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register customer(mike)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"mike@example.com\",\n  \"password\": \"2wsxzaq1\",\n  \"role\": \"USER\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:{{port}}/register",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "private",
 			"request": {
 				"auth": {
@@ -61,19 +121,19 @@
 			"response": []
 		},
 		{
-			"name": "public with authrization header",
+			"name": "private with authrization header(admin)",
 			"request": {
 				"auth": {
 					"type": "basic",
 					"basic": [
 						{
-							"key": "password",
-							"value": "1qazxsw2",
+							"key": "username",
+							"value": "admin",
 							"type": "string"
 						},
 						{
-							"key": "username",
-							"value": "test",
+							"key": "password",
+							"value": "1qazxsw2",
 							"type": "string"
 						}
 					]
@@ -81,13 +141,46 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:{{port}}/public",
+					"raw": "localhost:{{port}}/private",
 					"host": [
 						"localhost"
 					],
 					"port": "{{port}}",
 					"path": [
-						"public"
+						"private"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "private with authrization header(mike)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "mike@example.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "2wsxzaq1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/private",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"private"
 					]
 				}
 			},
