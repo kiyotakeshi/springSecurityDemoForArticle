@@ -25,17 +25,30 @@ class SecurityConfig {
                 it.requestMatchers("/register", "/public").permitAll()
                     .requestMatchers("/private").hasAnyRole("ADMIN", "USER")
                     .requestMatchers("/roles", "/customers/**").hasRole("ADMIN")
-                    // .anyRequest().authenticated()
+                    .requestMatchers("/me").authenticated()
             }
             .formLogin()
             .and().httpBasic()
             // TODO: enable
             .and().csrf().disable()
             .addFilterBefore(AuthorizationHeaderValidationFilter(), BasicAuthenticationFilter::class.java)
+            .addFilterBefore(JWTValidationFilter(), BasicAuthenticationFilter::class.java)
             .addFilterAfter(LoggingAuthoritiesFilter(), BasicAuthenticationFilter::class.java)
+            .addFilterAfter(JWTGenerationFilter(), LoggingAuthoritiesFilter::class.java)
         return http.build()
     }
 
+    // https://docs.spring.io/spring-security/reference/reactive/integrations/cors.html
+//    @Bean
+//    fun corsConfigurationSource(): CorsConfigurationSource {
+//        val configuration = CorsConfiguration()
+//        configuration.allowedOrigins = listOf("https://localhost:3000")
+//        configuration.allowedMethods = listOf("GET", "POST")
+//        configuration.allowCredentials = true
+//        val source = UrlBasedCorsConfigurationSource()
+//        source.registerCorsConfiguration("/**", configuration)
+//        return source
+//    }
 
     @Bean
     fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()
