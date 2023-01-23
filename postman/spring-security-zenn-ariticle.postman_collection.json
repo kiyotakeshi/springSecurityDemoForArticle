@@ -124,6 +124,128 @@
 			"response": []
 		},
 		{
+			"name": "private with jwt(mike)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTcHJpbmcgU2VjdXJpdHkgU2FtcGxlIiwic3ViIjoiSldUIiwidXNlcm5hbWUiOiJtaWtlQGV4YW1wbGUuY29tIiwicm9sZXMiOlsiUk9MRV9URVNUIiwiUk9MRV9VU0VSIl0sImlhdCI6MTY3NDQ4OTY2NiwiZXhwIjoxNjc0NDg5NjY2fQ.SSSKV9RDmaMXC3UQhcZ2yHBbvsWSVs8GEZRwVzjKnF2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/private",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"private"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "private with jwt(admin)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTcHJpbmcgU2VjdXJpdHkgU2FtcGxlIiwic3ViIjoiSldUIiwidXNlcm5hbWUiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiXSwiaWF0IjoxNjc0NDkwOTcxLCJleHAiOjE2NzQ1MTk3NzF9.nh4uH6UL3YObjampJbjr0ZM_9yVaU-3pkA6ifKhuyuQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/private",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"private"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "jwt generation(mike)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "mike@example.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "2wsxzaq1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/me",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "jwt generation(admin)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1qazxsw2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@example.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:{{port}}/me",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "add new role",
 			"request": {
 				"auth": {
@@ -166,7 +288,7 @@
 			"response": []
 		},
 		{
-			"name": "get roles",
+			"name": "get roles with Basic Authorization",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -182,6 +304,86 @@
 						{
 							"key": "username",
 							"value": "admin@example.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:{{port}}/roles",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get roles with JWT(admin)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTcHJpbmcgU2VjdXJpdHkgU2FtcGxlIiwic3ViIjoiSldUIiwidXNlcm5hbWUiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiXSwiaWF0IjoxNjc0NDkwOTcxLCJleHAiOjE2NzQ1MTk3NzF9.nh4uH6UL3YObjampJbjr0ZM_9yVaU-3pkA6ifKhuyuQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:{{port}}/roles",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[FAILURE] get roles with JWT(mike)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTcHJpbmcgU2VjdXJpdHkgU2FtcGxlIiwic3ViIjoiSldUIiwidXNlcm5hbWUiOiJtaWtlQGV4YW1wbGUuY29tIiwicm9sZXMiOlsiUk9MRV9URVNUIiwiUk9MRV9VU0VSIl0sImlhdCI6MTY3NDQ4OTY2NiwiZXhwIjoxNjc0NDg5NjY2fQ.SSSKV9RDmaMXC3UQhcZ2yHBbvsWSVs8GEZRwVzjKnF4",
 							"type": "string"
 						}
 					]
@@ -256,7 +458,87 @@
 			"response": []
 		},
 		{
-			"name": "attach role",
+			"name": "get customers with JWT(admin)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTcHJpbmcgU2VjdXJpdHkgU2FtcGxlIiwic3ViIjoiSldUIiwidXNlcm5hbWUiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiXSwiaWF0IjoxNjc0NDkwOTcxLCJleHAiOjE2NzQ1MTk3NzF9.nh4uH6UL3YObjampJbjr0ZM_9yVaU-3pkA6ifKhuyuQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:{{port}}/customers",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[FAILURE] get customers with JWT(mike)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTcHJpbmcgU2VjdXJpdHkgU2FtcGxlIiwic3ViIjoiSldUIiwidXNlcm5hbWUiOiJtaWtlQGV4YW1wbGUuY29tIiwicm9sZXMiOlsiUk9MRV9URVNUIiwiUk9MRV9VU0VSIl0sImlhdCI6MTY3NDQ4OTY2NiwiZXhwIjoxNjc0NDg5NjY2fQ.SSSKV9RDmaMXC3UQhcZ2yHBbvsWSVs8GEZRwVzjKnF4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:{{port}}/customers",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "attach role with Basic Authorization",
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -285,14 +567,53 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:{{port}}/customers/22/roles",
+					"raw": "localhost:{{port}}/customers/2/roles",
 					"host": [
 						"localhost"
 					],
 					"port": "{{port}}",
 					"path": [
 						"customers",
-						"22",
+						"2",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "attach role with JWT(admin)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTcHJpbmcgU2VjdXJpdHkgU2FtcGxlIiwic3ViIjoiSldUIiwidXNlcm5hbWUiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGVzIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiXSwiaWF0IjoxNjc0NDkwOTcxLCJleHAiOjE2NzQ1MTk3NzF9.nh4uH6UL3YObjampJbjr0ZM_9yVaU-3pkA6ifKhuyuQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\"TEST\"]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:{{port}}/customers/2/roles",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"customers",
+						"2",
 						"roles"
 					]
 				}

@@ -4,8 +4,10 @@ import com.example.zenn.domain.customer.Customer
 import com.example.zenn.security.CustomerDetails
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 /**
@@ -29,4 +31,8 @@ class CustomerController(
         }
         return response
     }
+
+    @RequestMapping("/me")
+    fun getUserDetailsAfterLogin(authentication: Authentication): Customer =
+        customerDetails.findByEmail(authentication.name)
 }
