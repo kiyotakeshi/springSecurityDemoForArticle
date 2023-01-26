@@ -8,8 +8,4 @@ spring:
     password: password
 
 logging.level.org.jooq: trace
-#logging:
-#  level:
-#    org:
-#      springframework:
-#        security: TRACE
+logging.level.org.springframework.security: TRACE

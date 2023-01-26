@@ -63,16 +63,4 @@ class JWTValidationFilter : OncePerRequestFilter() {
     override fun shouldNotFilter(request: HttpServletRequest): Boolean {
         return request.servletPath == "/me"
     }
-
-//    @JvmStatic
-//    fun main(args: Array<String>) {
-//        val yourList = List.of("hello", "world")
-//        yourVarargMethod(*yourList.toTypedArray())
-//    }
-//
-//    fun yourVarargMethod(vararg args: String?) {
-//        for (str in args) {
-//            println(str)
-//        }
-//    }
 }
