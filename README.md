@@ -24,6 +24,10 @@ OpenJDK Runtime Environment (build 17.0.3.1+2-LTS)
 OpenJDK 64-Bit Server VM (build 17.0.3.1+2-LTS, mixed mode, sharing)
 ```
 
+## generate rsa public and private key for self-signed JWT 
+
+[how to generate](./src/main/resources/certs/memo.md)
+
 ## setup DB
 
 - run Postgres

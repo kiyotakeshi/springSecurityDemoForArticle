@@ -40,8 +40,4 @@ class CustomerDetails(
         val newCustomer = Customer.create(customer.email, hashedPassword, setOfNotNull(userRole))
         return customerRepository.save(newCustomer)
     }
-
-    fun findByEmail(email: String): Customer =
-        customerRepository.findByEmail(email)
-            ?: throw UsernameNotFoundException("\"$email\" user is not found")
 }

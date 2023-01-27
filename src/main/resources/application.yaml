@@ -7,5 +7,9 @@ spring:
     username: postgres
     password: password
 
+rsa:
+  public-key: classpath:certs/public.pem
+  private-key: classpath:certs/private.pem
+
 logging.level.org.jooq: trace
 logging.level.org.springframework.security: TRACE

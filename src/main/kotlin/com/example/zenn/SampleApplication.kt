@@ -1,11 +1,14 @@
 package com.example.zenn
 
+import com.example.zenn.security.RsaKeyProperties
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 
+@EnableConfigurationProperties(RsaKeyProperties::class)
 @SpringBootApplication
 @EnableWebSecurity(debug = true)
 // @EnableMethodSecurity
