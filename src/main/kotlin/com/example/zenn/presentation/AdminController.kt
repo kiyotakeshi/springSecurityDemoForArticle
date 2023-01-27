@@ -1,4 +1,4 @@
-package com.example.zenn
+package com.example.zenn.presentation
 
 import com.example.zenn.domain.customer.Customer
 import com.example.zenn.domain.customer.CustomerRepository

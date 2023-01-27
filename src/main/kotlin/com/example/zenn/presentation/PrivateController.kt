@@ -1,4 +1,4 @@
-package com.example.zenn
+package com.example.zenn.presentation
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestController
  * @author kiyota
  */
 @RestController
-@RequestMapping("/public")
-class PublicController {
+@RequestMapping("/private")
+class PrivateController {
 
     @GetMapping
     fun hello(): String {
-        return "hello public world";
+        return "hello private world";
     }
 }
